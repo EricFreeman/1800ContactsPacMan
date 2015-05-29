@@ -7,6 +7,7 @@ namespace Assets.Scripts
     {
         public GameObject Wall;
         public GameObject Floor;
+        public GameObject SolutionDroplet;
 
         void Start ()
         {
@@ -30,6 +31,12 @@ namespace Assets.Scripts
                     {
                         var floor = Instantiate(Floor);
                         floor.transform.position = new Vector3(column, 0, row);
+
+	                    if (column%2 == 0 && row%2 == 0)
+	                    {
+		                    var droplet = Instantiate(SolutionDroplet);
+		                    droplet.transform.position = new Vector3(column, 0, row);
+	                    }
                     }
                 }
             }
@@ -37,32 +44,20 @@ namespace Assets.Scripts
 
         private char[,] GenerateMap()
         {
-            var mapArray = new char[5,5];
-            mapArray[0, 0] = 'W';
-            mapArray[0, 1] = 'W';
-            mapArray[0, 2] = 'W';
-            mapArray[0, 3] = 'W';
-            mapArray[0, 4] = 'W';
-            mapArray[1, 0] = 'W';
-            mapArray[1, 1] = 'F';
-            mapArray[1, 2] = 'F';
-            mapArray[1, 3] = 'F';
-            mapArray[1, 4] = 'W';
-            mapArray[2, 0] = 'W';
-            mapArray[2, 1] = 'F';
-            mapArray[2, 2] = 'F';
-            mapArray[2, 3] = 'F';
-            mapArray[2, 4] = 'W';
-            mapArray[3, 0] = 'W';
-            mapArray[3, 1] = 'F';
-            mapArray[3, 2] = 'F';
-            mapArray[3, 3] = 'F';
-            mapArray[3, 4] = 'W';
-            mapArray[4, 0] = 'W';
-            mapArray[4, 1] = 'W';
-            mapArray[4, 2] = 'W';
-            mapArray[4, 3] = 'W';
-            mapArray[4, 4] = 'W';
+	        const int size = 100;
+			var mapArray = new char[size, size];
+			for (var i = 0; i < size; i++)
+	        {
+		        for (var j = 0; j < size; j++)
+		        {
+			        var block = 'F';
+					if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
+			        {
+				        block = 'W';
+			        }
+			        mapArray[i, j] = block;
+		        }
+	        }
 
             return mapArray;
         }
