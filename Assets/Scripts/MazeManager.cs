@@ -44,7 +44,7 @@ namespace Assets.Scripts
 
         private char[,] GenerateMap()
         {
-	        const int size = 100;
+	        const int size = 50;
 			var mapArray = new char[size, size];
 			for (var i = 0; i < size; i++)
 	        {
