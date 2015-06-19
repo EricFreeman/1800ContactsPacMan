@@ -1,23 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BoxOfContacts : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnCollisionEnter(Collision collision)
+namespace Assets.Scripts
+{
+    public class BoxOfContacts : MonoBehaviour
     {
-        if (collision.collider.name == "Player")
+        public string NextLevelName;
+
+        void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("VICTORY");
+            if (collision.collider.name == "Player")
+            {
+                var levelManager = FindObjectOfType<LevelManager>();
+                levelManager.LoadLevel(NextLevelName);
+            }
         }
     }
 }
