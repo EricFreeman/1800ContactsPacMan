@@ -15,6 +15,7 @@ namespace Assets.Scripts.UI
 
         public void SelectLevel()
         {
+            PlayerPrefs.SetString("Level", LevelName);
             Application.LoadLevel("Game");
         }
     }

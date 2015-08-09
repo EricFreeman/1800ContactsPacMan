@@ -6,9 +6,25 @@ namespace Assets.Scripts
     {
         public GameObject CurrentLevel;
 
+        void Start()
+        {
+            var level = PlayerPrefs.GetString("Level");
+            if (string.IsNullOrEmpty(level))
+            {
+                // TODO: Get rid of hard coded level1
+                level = "Level1";
+            }
+
+            LoadLevel(level);
+        }
+
         public void LoadLevel(string levelName)
         {
-            Destroy(CurrentLevel);
+            if (CurrentLevel != null)
+            {
+                Destroy(CurrentLevel);
+            }
+
             CurrentLevel = Instantiate(Resources.Load<GameObject>("Prefabs/Levels/" + levelName));
 
             var player = FindObjectOfType<Player>();
