@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Assets.Scripts
 {
-	public float speed;
+    public class Player : MonoBehaviour
+    {
+        public float Speed;
+        private Rigidbody _rb;
 
-	private Rigidbody rb;
+        void Start()
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
 
-	void Start()
-	{
-		rb = GetComponent<Rigidbody>();
-	}
+        void FixedUpdate()
+        {
+            var moveHorizontal = Input.GetAxis("Horizontal");
+            var moveVertical = Input.GetAxis("Vertical");
 
-	void FixedUpdate()
-	{
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
+            var movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-		rb.AddForce(movement * speed);
-	}
+            _rb.AddForce(movement * Speed);
+        }
+    }
 }
