@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Messages;
+using UnityEngine;
+using UnityEventAggregator;
 
 namespace Assets.Scripts
 {
@@ -20,6 +22,11 @@ namespace Assets.Scripts
             var movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
             _rb.AddForce(movement * Speed);
+
+            if (transform.position.y <= -20)
+            {
+                EventAggregator.SendMessage(new RespawnPlayerMessage());
+            }
         }
     }
 }
