@@ -23,7 +23,7 @@ namespace Assets.Scripts
 
             _rb.AddForce(movement * Speed);
 
-            if (transform.position.y <= -20)
+            if (transform.position.y <= -20 || Input.GetKeyDown(KeyCode.R))
             {
                 EventAggregator.SendMessage(new RespawnPlayerMessage());
             }
