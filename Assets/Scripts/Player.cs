@@ -1,5 +1,4 @@
-﻿using System.CodeDom.Compiler;
-using Assets.Scripts.Extensions;
+﻿using Assets.Scripts.Extensions;
 using Assets.Scripts.Messages;
 using UnityEngine;
 using UnityEventAggregator;
@@ -11,6 +10,7 @@ namespace Assets.Scripts
         public float MaxSpeed;
         public float Acceleration;
         public float Deceleration;
+        public float AirDeceleration;
 
         private Rigidbody _rb;
 
@@ -29,9 +29,10 @@ namespace Assets.Scripts
 
             if (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical) <= .1f)
             {
+                var currentDeceleration = IsGrounded() ? Deceleration : AirDeceleration;
                 var temp = _rb.velocity;
-                temp.x = Mathf.MoveTowards(temp.x, 0, Deceleration);
-                temp.z = Mathf.MoveTowards(temp.z, 0, Deceleration);
+                temp.x = Mathf.MoveTowards(temp.x, 0, currentDeceleration);
+                temp.z = Mathf.MoveTowards(temp.z, 0, currentDeceleration);
 
                 _rb.velocity = temp;
             }
@@ -40,6 +41,11 @@ namespace Assets.Scripts
             {
                 EventAggregator.SendMessage(new RespawnPlayerMessage());
             }
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics.Raycast(transform.position - new Vector3(0, .5f, 0), Vector2.down, .1f);
         }
     }
 }
