@@ -1,0 +1,53 @@
+﻿<LevelConfiguration>
+  <Levels>
+    <LevelSequence>
+      <ConversationName>Level1</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level1</PrefabName>
+      <DisplayName>Breaking the Eyes 1</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Level2</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level2</PrefabName>
+      <DisplayName>Breaking the Eyes 2</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Level3</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level3</PrefabName>
+      <DisplayName>Eye Am Watching You</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>RampJumpAndRingLevel</PrefabName>
+      <DisplayName>Their Eyes Were Watching Baud</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Level4</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level4</PrefabName>
+      <DisplayName>Between The H and J</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Level5</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level5</PrefabName>
+      <DisplayName>My Own Prism</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Level6</ConversationName>
+    </LevelSequence>
+    <LevelSequence>
+      <PrefabName>Level6</PrefabName>
+      <DisplayName>Last Sighting</DisplayName>
+    </LevelSequence>
+    <LevelSequence>
+      <ConversationName>Finale</ConversationName>
+    </LevelSequence>
+  </Levels>
+</LevelConfiguration>
