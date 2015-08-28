@@ -43,6 +43,10 @@
       <PrefabName>Level5</PrefabName>
       <DisplayName>My Own Prism</DisplayName>
     </LevelSequence>
+		<LevelSequence>
+			<PrefabName>YouveGotALotOfOpticNerveLevel</PrefabName>
+			<DisplayName>You've Got a Lot of Optic Nerve</DisplayName>
+		</LevelSequence>
     <LevelSequence>
       <ConversationName>Level6</ConversationName>
     </LevelSequence>
