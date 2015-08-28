@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Managers;
 using Assets.Scripts.Messages;
+using Assets.Scripts.Models;
 using UnityEngine;
 using UnityEventAggregator;
 
@@ -21,7 +23,7 @@ namespace Assets.Scripts
 
             if (!IgnoreLevelLoad)
             {
-                if(string.IsNullOrEmpty(level))
+                if (string.IsNullOrEmpty(level))
                     LoadNextLevel();
                 else
                     LoadLevel(level);
@@ -37,6 +39,8 @@ namespace Assets.Scripts
 
         public void LoadLevel(string levelName)
         {
+            PlayerPrefs.SetString("Level", levelName);
+            
             if (_currentLevel != null)
             {
                 Destroy(_currentLevel);
@@ -49,27 +53,14 @@ namespace Assets.Scripts
         {
             PlayerPrefs.SetString("Cutscene", cutsceneName);
             PlayerPrefs.SetString("Level", levelName);
+
             Application.LoadLevel("Cutscene");
         }
 
         private List<LevelSequence> InitializeLevelSequence()
         {
-            return new List<LevelSequence>
-            {
-                new LevelSequence { PrefabName="Level1", IsCutscene = true },
-                new LevelSequence { PrefabName="Level1", DisplayName = "Breaking the Eyes 1"},
-                new LevelSequence { PrefabName="Level2", IsCutscene = true },
-                new LevelSequence { PrefabName="Level2", DisplayName = "Breaking the Eyes 2" },
-                new LevelSequence { PrefabName="Level3", IsCutscene = true },
-                new LevelSequence { PrefabName="Level3", DisplayName = "Eye Am Watching You" },
-                new LevelSequence { PrefabName="Level4", IsCutscene = true },
-                new LevelSequence { PrefabName="Level4", DisplayName = "Between The H and J" },
-                new LevelSequence { PrefabName="Level5", IsCutscene = true },
-                new LevelSequence { PrefabName="Level5", DisplayName = "My Own Prism" },
-                new LevelSequence { PrefabName="Level6", IsCutscene = true },
-                new LevelSequence { PrefabName="Level6", DisplayName = "Last Sighting" },
-                new LevelSequence { PrefabName="Finale", IsCutscene = true },
-            };
+            var manager = new XmlManager<LevelConfiguration>();
+            return manager.Load("Assets/Configuration/LevelSequence.xml").Levels;
         }
 
         private void LoadNextLevel()
@@ -77,21 +68,22 @@ namespace Assets.Scripts
             var currentLevel = PlayerPrefs.GetString("Level");
             if (string.IsNullOrEmpty(currentLevel))
             {
-                LoadLevel(LevelSequence.First(x => !x.IsCutscene).PrefabName);
+                LoadLevel(LevelSequence.First(x => !x.IsCutscene()).PrefabName);
             }
             else
             {
-                var index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene));
+                var index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene()));
                 if (index >= LevelSequence.Count)
                 {
                     Application.LoadLevel("MainMenu");
                 }
 
                 var next = LevelSequence[index + 1];
-                if (next.IsCutscene && index + 2 < LevelSequence.Count)
+                if (next.IsCutscene() && index + 2 < LevelSequence.Count)
                 {
                     var nextLevel = LevelSequence[index + 2];
-                    LoadCutscene(next.PrefabName, nextLevel.PrefabName);
+
+                    LoadCutscene(next.ConversationName, nextLevel.PrefabName);
                 }
                 else
                 {
@@ -104,12 +96,5 @@ namespace Assets.Scripts
         {
             LoadNextLevel();
         }
-    }
-
-    public class LevelSequence
-    {
-        public string PrefabName;
-        public string DisplayName;
-        public bool IsCutscene;
     }
 }
