@@ -18,8 +18,14 @@ namespace Assets.Scripts.UI
 
         void Start()
         {
+            var convo = PlayerPrefs.GetString("Cutscene");
+            if (string.IsNullOrEmpty(convo))
+            {
+                convo = "Level6";
+            }
+
             var manager = new XmlManager<Conversation>();
-            _conversation = manager.Load("Assets/Conversations/Level6.txt");
+            _conversation = manager.Load(string.Format("Assets/Conversations/{0}.txt", convo));
         }
 
         void Update()
