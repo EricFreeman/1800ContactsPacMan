@@ -55,7 +55,7 @@ namespace Assets.Scripts.UI
 
             if (!AudioSource.isPlaying && _conversation.IsComplete)
             {
-                Application.LoadLevel("Game");
+                Application.LoadLevel(string.IsNullOrEmpty(PlayerPrefs.GetString("Level")) ? "MainMenu" : "Game");
             }
         }
     }
