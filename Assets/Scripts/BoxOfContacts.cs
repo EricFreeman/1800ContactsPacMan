@@ -5,13 +5,23 @@ namespace Assets.Scripts
     public class BoxOfContacts : MonoBehaviour
     {
         public string NextLevelName;
+        public string NextCutsceneName;
 
         void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.name == "Player")
             {
-                var levelManager = FindObjectOfType<LevelManager>();
-                levelManager.LoadLevel(NextLevelName);
+                if (!string.IsNullOrEmpty(NextCutsceneName))
+                {
+                    PlayerPrefs.SetString("Level", NextLevelName);
+                    PlayerPrefs.SetString("Cutscene", NextCutsceneName);
+                    Application.LoadLevel("Cutscene");
+                }
+                else
+                {
+                    var levelManager = FindObjectOfType<LevelManager>();
+                    levelManager.LoadLevel(NextLevelName);
+                }
             }
         }
     }
