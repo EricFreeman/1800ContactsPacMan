@@ -3,7 +3,7 @@
 		<Line>
 			<Name>Dex</Name>
 			<Image>Dexter</Name>
-			<Text>How did I get here?  Hmm.  It looks like a box from 1-800 CONTACTS is up ahead.  I wonder if they have my brand?</Text>
+			<Text>Hmm.  It looks like a box from 1-800 CONTACTS is up ahead.  I wonder if they have my brand?</Text>
 			<Audio>Level1Intro</Audio>
 		</Line>
 	</Lines>
