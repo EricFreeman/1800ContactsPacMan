@@ -96,6 +96,7 @@ namespace Assets.Scripts
                 }
                 else
                 {
+                    PlayerPrefs.SetString("Level", next.PrefabName);
                     LoadLevel(next.PrefabName);
                 }
             }
