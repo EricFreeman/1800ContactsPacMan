@@ -2,43 +2,43 @@
 	<Lines>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>Let's SEE if I can make it a little harder this time.</Text>
 			<Audio>Level4a</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>I have no idea where you even are.  You're like some kind of disembodied narrator.  You're not in my head, are you?</Text>
 			<Audio>Level4b</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>If I were, that would sure be EYERONIC!</Text>
 			<Audio>Level4c</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>I don't think you actually know what IRONIC means.</Text>
 			<Audio>Level4d</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>Don't ROLL YOUR EYES at me, young man!</Text>
 			<Audio>Level4e</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>Ugh.  I didn't think your puns could get any CORNEA.</Text>
 			<Audio>Level4f</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>I know you secretly love my AQUEOUS HUMOR.</Text>
 			<Audio>Level4g</Audio>
 		</Line>

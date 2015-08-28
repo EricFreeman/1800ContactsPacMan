@@ -2,37 +2,37 @@
 	<Lines>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>You know, going through your twisted mazes is way more complicated than just calling 1-800 CONTACTS, or buying contacts with their mobile app.</Text>
 			<Audio>Level5a</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>But I enjoy this time we have together, Dexter.  After all, I ONLY HAVE EYES FOR YOU.</Text>
 			<Audio>Level5b</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>Ugh.  I just wish I could SHUT YOU OUT!</Text>
 			<Audio>Level5c</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>You haven't SEEN the last of me, Dexter.</Text>
 			<Audio>Level5d</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>I haven't seen you at all.</Text>
 			<Audio>Level5e</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>IRIS my case.</Text>
 			<Audio>Level5f</Audio>
 		</Line>

@@ -2,8 +2,8 @@
 {
     public class Line
     {
-        public string Name;
         public string Image;
+        public string Name;
         public string Text;
         public string Audio;
     }

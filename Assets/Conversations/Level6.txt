@@ -2,25 +2,25 @@
 	<Lines>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Name>
+			<Image>Sinister</Image>
 			<Text>Come to put a LID on my plans, eh Dexter?</Text>
 			<Audio>Level6a</Audio>
 		</Line>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>The world needs contact lenses!  Have you no VISION?</Text>
 			<Audio>Level6b</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister Laser</Name>
+			<Image>Sinister Laser</Image>
 			<Text>We'll SEE about that--BEHOLD, my GIANT DEATH LASER!  Finally, I will be able to have my revenge--AN EYE FOR AN EYE!</Text>
 			<Audio>Level6c</Audio>
 		</Line>
 		<Line>
 			<Name>Oculus Sinister</Name>
-			<Image>Sinister Laser Shooting</Name>
+			<Image>Sinister Laser Shooting</Image>
 			<Text>Pew Pew Pew</Text>
 			<Audio>Level6d</Audio>
 		</Line>

@@ -2,7 +2,7 @@
 	<Lines>
 		<Line>
 			<Name>Dex</Name>
-			<Image>Dexter</Name>
+			<Image>Dexter</Image>
 			<Text>What the heck, again?  This is a little more complicated, but I think I can do it.</Text>
 			<Audio>Level2Intro</Audio>
 		</Line>
