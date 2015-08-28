@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Messages;
+using Assets.Scripts.Models;
 using UnityEngine;
 using UnityEventAggregator;
 
@@ -38,6 +39,8 @@ namespace Assets.Scripts
 
         public void LoadLevel(string levelName)
         {
+            PlayerPrefs.SetString("Level", levelName);
+            
             if (_currentLevel != null)
             {
                 Destroy(_currentLevel);
@@ -50,6 +53,7 @@ namespace Assets.Scripts
         {
             PlayerPrefs.SetString("Cutscene", cutsceneName);
             PlayerPrefs.SetString("Level", levelName);
+
             Application.LoadLevel("Cutscene");
         }
 
@@ -78,11 +82,11 @@ namespace Assets.Scripts
                 if (next.IsCutscene() && index + 2 < LevelSequence.Count)
                 {
                     var nextLevel = LevelSequence[index + 2];
-                    LoadCutscene(next.PrefabName, nextLevel.PrefabName);
+
+                    LoadCutscene(next.ConversationName, nextLevel.PrefabName);
                 }
                 else
                 {
-                    PlayerPrefs.SetString("Level", next.PrefabName);
                     LoadLevel(next.PrefabName);
                 }
             }
@@ -91,23 +95,6 @@ namespace Assets.Scripts
         public void Handle(LoadNextLevelMessage message)
         {
             LoadNextLevel();
-        }
-    }
-
-    public class LevelConfiguration
-    {
-        public List<LevelSequence> Levels;
-    }
-
-    public class LevelSequence
-    {
-        public string PrefabName;
-        public string ConversationName;
-        public string DisplayName;
-
-        public bool IsCutscene()
-        {
-            return string.IsNullOrEmpty(PrefabName);
         }
     }
 }
