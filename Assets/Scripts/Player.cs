@@ -15,6 +15,9 @@ namespace Assets.Scripts
         public float Acceleration;
         public float Deceleration;
         public float AirDeceleration;
+        public bool IsBouncy = false;
+        public bool IsSticky = false; 
+
 
         private Rigidbody _rb;
 
@@ -50,30 +53,47 @@ namespace Assets.Scripts
 
         void UpdatePowerUps()
         {
+            CheckForBuffRemoval();
+            BouncyBuff();
+        }
+
+        void BouncyBuff()
+        {
+            Debug.Log(IsBouncy);
+            if (IsBouncy && IsGrounded())
+            {
+                _rb.AddForce(0, 66, 0);
+            }
+        }
+
+        void CheckForBuffRemoval()
+        {
             for (int index = Behaviors.Count - 1; index >= 0; index--)
             {
                 var behavior = Behaviors[index];
-                if (DateTime.Now.Subtract(TimeSpan.FromSeconds(10)).CompareTo(behavior.TimeStamp) > 0)
+                if (DateTime.Now.Subtract(TimeSpan.FromSeconds(behavior.Duration)).CompareTo(behavior.TimeStamp) > 0)
                 {
                     behavior.RemoveBuffFromPlayer(this);
                     Behaviors.Remove(behavior);
-                    Debug.Log(this.Acceleration);
-                    Debug.Log(this.MaxSpeed);
+                    //Debug.Log(this.Acceleration);
+                    //Debug.Log(this.MaxSpeed);
+                    Debug.Log(this.IsBouncy);
                 }
             }
         }
 
         private bool IsGrounded()
         {
-            return Physics.Raycast(transform.position - new Vector3(0, .5f, 0), Vector2.down, .1f);
+            return Physics.Raycast(transform.position - new Vector3(0, .5f, 0), Vector3.down, .1f);
         }
 
         public void AddPowerUp(Behavior behavior)
         {
             behavior.ApplyBuffToPlayer(this);
             Behaviors.Add(behavior);
-            Debug.Log(this.Acceleration);
-            Debug.Log(this.MaxSpeed);
+            //Debug.Log(this.Acceleration);
+            //Debug.Log(this.MaxSpeed);
+            Debug.Log(this.IsBouncy);
         }
     }
 }

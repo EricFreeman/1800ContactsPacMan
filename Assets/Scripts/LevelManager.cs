@@ -12,7 +12,7 @@ namespace Assets.Scripts
             if (string.IsNullOrEmpty(level))
             {
                 // TODO: Get rid of hard coded level1
-                level = "Level1";
+                level = "Playground";
             }
 
             LoadLevel(level);
