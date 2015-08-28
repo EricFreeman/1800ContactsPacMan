@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
@@ -6,6 +7,8 @@ namespace Assets.Scripts.UI
     {
         public string LevelName;
         public string CutsceneName;
+
+        public Image Image;
 
         public void SelectLevel()
         {

@@ -6,6 +6,7 @@
     <LevelSequence>
       <PrefabName>Level1</PrefabName>
       <DisplayName>Breaking the Eyes 1</DisplayName>
+      <Image>Level1</Image>
     </LevelSequence>
     <LevelSequence>
       <ConversationName>Level2</ConversationName>
@@ -13,6 +14,7 @@
     <LevelSequence>
       <PrefabName>Level2</PrefabName>
       <DisplayName>Breaking the Eyes 2</DisplayName>
+      <Image>Level2</Image>
     </LevelSequence>
     <LevelSequence>
       <ConversationName>Level3</ConversationName>
@@ -20,6 +22,7 @@
     <LevelSequence>
       <PrefabName>Level3</PrefabName>
       <DisplayName>Eye Am Watching You</DisplayName>
+      <Image>Level3</Image>
     </LevelSequence>
     <LevelSequence>
       <PrefabName>RampJumpAndRingLevel</PrefabName>
@@ -31,6 +34,7 @@
     <LevelSequence>
       <PrefabName>Level4</PrefabName>
       <DisplayName>Between The H and J</DisplayName>
+      <Image>Level4</Image>
     </LevelSequence>
 		<LevelSequence>
 			<PrefabName>ICanTreeClearlyNowLevel</PrefabName>
@@ -42,6 +46,7 @@
     <LevelSequence>
       <PrefabName>Level5</PrefabName>
       <DisplayName>My Own Prism</DisplayName>
+      <Image>Level5</Image>
     </LevelSequence>
 		<LevelSequence>
 			<PrefabName>YouveGotALotOfOpticNerveLevel</PrefabName>
@@ -53,6 +58,7 @@
     <LevelSequence>
       <PrefabName>Level6</PrefabName>
       <DisplayName>Last Sighting</DisplayName>
+      <Image>Level6</Image>
     </LevelSequence>
     <LevelSequence>
       <ConversationName>Finale</ConversationName>

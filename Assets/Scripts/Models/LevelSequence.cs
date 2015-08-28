@@ -5,6 +5,7 @@ namespace Assets.Scripts.Models
         public string PrefabName;
         public string ConversationName;
         public string DisplayName;
+        public string Image;
 
         public bool IsCutscene()
         {

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Managers;
 using Assets.Scripts.Messages;
 using Assets.Scripts.Models;
+using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEventAggregator;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Managers
 {
     public class LevelManager : MonoBehaviour, IListener<LoadNextLevelMessage>
     {
@@ -14,19 +14,33 @@ namespace Assets.Scripts
         public List<LevelSequence> LevelSequence;
         public bool IgnoreLevelLoad;
 
+        public MainMenuController FuckThis;
+
         private GameObject _currentLevel;
 
         void Start()
         {
             LevelSequence = InitializeLevelSequence();
+
+            if (FuckThis != null)
+            {
+                FuckThis.Handle(new LevelSequenceLoadedMessage {Levels = LevelSequence});
+            }
+
+            EventAggregator.SendMessage(new LevelSequenceLoadedMessage { Levels = LevelSequence });
+
             var level = PlayerPrefs.GetString("Level");
 
             if (!IgnoreLevelLoad)
             {
                 if (string.IsNullOrEmpty(level))
+                {
                     LoadNextLevel();
+                }
                 else
+                {
                     LoadLevel(level);
+                }
             }
 
             this.Register<LoadNextLevelMessage>();
