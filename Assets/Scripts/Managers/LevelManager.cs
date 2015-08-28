@@ -60,7 +60,14 @@ namespace Assets.Scripts.Managers
                 Destroy(_currentLevel);
             }
 
-            _currentLevel = Instantiate(Resources.Load<GameObject>("Prefabs/Levels/" + levelName));
+            if (Application.loadedLevelName != "Game")
+            {
+                Application.LoadLevel("Game");
+            }
+            else
+            {
+                _currentLevel = Instantiate(Resources.Load<GameObject>("Prefabs/Levels/" + levelName));
+            }
         }
 
         public void LoadCutscene(string cutsceneName, string levelName)
@@ -80,13 +87,23 @@ namespace Assets.Scripts.Managers
         private void LoadNextLevel()
         {
             var currentLevel = PlayerPrefs.GetString("Level");
+            var currentCutscene = PlayerPrefs.GetString("Cutscene");
             if (string.IsNullOrEmpty(currentLevel))
             {
                 LoadLevel(LevelSequence.First(x => !x.IsCutscene()).PrefabName);
             }
             else
             {
-                var index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene()));
+                var index = 0;
+                if (Application.loadedLevelName == "Game")
+                {
+                    index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene()));
+                }
+                else
+                {
+                    index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.ConversationName == currentCutscene && x.IsCutscene()));
+                }
+
                 if (index >= LevelSequence.Count)
                 {
                     Application.LoadLevel("MainMenu");

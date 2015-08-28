@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Messages;
 using Assets.Scripts.Models;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEventAggregator;
 
 namespace Assets.Scripts.UI
 {
@@ -55,7 +57,8 @@ namespace Assets.Scripts.UI
 
             if (!AudioSource.isPlaying && _conversation.IsComplete)
             {
-                Application.LoadLevel(string.IsNullOrEmpty(PlayerPrefs.GetString("Level")) ? "MainMenu" : "Game");
+                EventAggregator.SendMessage(new LoadNextLevelMessage());
+                //Application.LoadLevel(string.IsNullOrEmpty(PlayerPrefs.GetString("Level")) ? "MainMenu" : "Game");
             }
         }
     }

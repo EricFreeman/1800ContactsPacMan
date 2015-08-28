@@ -9,7 +9,7 @@ namespace Assets.Scripts.Models
 
         public bool IsCutscene()
         {
-            return string.IsNullOrEmpty(PrefabName);
+            return !string.IsNullOrEmpty(ConversationName);
         }
     }
 }
