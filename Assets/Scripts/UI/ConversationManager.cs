@@ -30,7 +30,7 @@ namespace Assets.Scripts.UI
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.anyKeyDown)
             {
                 AudioSource.Stop();
             }
