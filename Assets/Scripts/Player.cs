@@ -1,5 +1,8 @@
-﻿using Assets.Scripts.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.Extensions;
 using Assets.Scripts.Messages;
+using Assets.Scripts.PowerUps.Behaviors;
 using UnityEngine;
 using UnityEventAggregator;
 
@@ -7,6 +10,7 @@ namespace Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
+        public List<Behavior> Behaviors = new List<Behavior>();
         public float MaxSpeed;
         public float Acceleration;
         public float Deceleration;
@@ -41,11 +45,35 @@ namespace Assets.Scripts
             {
                 EventAggregator.SendMessage(new RespawnPlayerMessage());
             }
+            UpdatePowerUps();
+        }
+
+        void UpdatePowerUps()
+        {
+            for (int index = Behaviors.Count - 1; index >= 0; index--)
+            {
+                var behavior = Behaviors[index];
+                if (DateTime.Now.Subtract(TimeSpan.FromSeconds(10)).CompareTo(behavior.TimeStamp) > 0)
+                {
+                    behavior.RemoveBuffFromPlayer(this);
+                    Behaviors.Remove(behavior);
+                    Debug.Log(this.Acceleration);
+                    Debug.Log(this.MaxSpeed);
+                }
+            }
         }
 
         private bool IsGrounded()
         {
             return Physics.Raycast(transform.position - new Vector3(0, .5f, 0), Vector2.down, .1f);
+        }
+
+        public void AddPowerUp(Behavior behavior)
+        {
+            behavior.ApplyBuffToPlayer(this);
+            Behaviors.Add(behavior);
+            Debug.Log(this.Acceleration);
+            Debug.Log(this.MaxSpeed);
         }
     }
 }
