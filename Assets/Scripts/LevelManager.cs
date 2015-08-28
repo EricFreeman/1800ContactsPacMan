@@ -62,6 +62,7 @@ namespace Assets.Scripts
                 new LevelSequence { PrefabName="Level2", DisplayName = "Breaking the Eyes 2" },
                 new LevelSequence { PrefabName="Level3", IsCutscene = true },
                 new LevelSequence { PrefabName="Level3", DisplayName = "Eye Am Watching You" },
+				new LevelSequence { PrefabName="RampJumpAndRingLevel", DisplayName = "Their Eyes Were Watching Baud" },
                 new LevelSequence { PrefabName="Level4", IsCutscene = true },
                 new LevelSequence { PrefabName="Level4", DisplayName = "Between The H and J" },
                 new LevelSequence { PrefabName="Level5", IsCutscene = true },
