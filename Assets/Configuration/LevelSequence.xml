@@ -32,6 +32,10 @@
       <PrefabName>Level4</PrefabName>
       <DisplayName>Between The H and J</DisplayName>
     </LevelSequence>
+		<LevelSequence>
+			<PrefabName>ICanTreeClearlyNowLevel</PrefabName>
+			<DisplayName>I Can Tree Clearly Now</DisplayName>
+		</LevelSequence>
     <LevelSequence>
       <ConversationName>Level5</ConversationName>
     </LevelSequence>
