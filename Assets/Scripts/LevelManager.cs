@@ -8,11 +8,11 @@ namespace Assets.Scripts
 
         void Start()
         {
-            string level = null; //PlayerPrefs.GetString("Level");
+            string level = PlayerPrefs.GetString("Level");
             if (string.IsNullOrEmpty(level))
             {
                 // TODO: Get rid of hard coded level1
-                level = "Playground";
+                level = "Level1";
             }
 
             LoadLevel(level);
