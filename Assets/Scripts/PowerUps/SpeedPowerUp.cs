@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.PowerUps
 {
     public class SpeedPowerUp : MonoBehaviour {
-        public List<Behavior> Behaviors = new List<Behavior> { new Sticky()};
+        public List<Behavior> Behaviors = new List<Behavior> { new SpeedUp()};
         // Use this for initialization
         void Start () {
 	
