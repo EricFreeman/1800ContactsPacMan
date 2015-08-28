@@ -27,7 +27,7 @@
 		<Line>
 			<Name>Oculus Sinister</Name>
 			<Image>Sinister</Image>
-			<Text>Don't ROLL YOUR EYES at me, young man!</Text>
+			<Text>Don't ROLL YOUR EYE at me, young man!</Text>
 			<Audio>Level4e</Audio>
 		</Line>
 		<Line>
