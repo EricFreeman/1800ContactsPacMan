@@ -8,6 +8,11 @@ namespace Assets.Scripts.UI
     {
         public Text TextBox;
 
+        public bool FinishedWriting
+        {
+            get { return !_text.Any(); }
+        }
+
         private string _text;
         private float _speed;
 
@@ -22,20 +27,23 @@ namespace Assets.Scripts.UI
         {
             _time += Time.deltaTime;
 
-            if (_time >= _speed)
+            if (_time >= _speed && _text.Any())
             {
                 _time = 0;
 
-                if (_text.Any())
-                {
-                    var text = _text[0];
-                    TextBox.text += text;
-                    _text = _text.Remove(0, 1);
-                }
+                var text = _text[0];
+                TextBox.text += text;
+                _text = _text.Remove(0, 1);
             }
         }
 
-        private void TypeText(string text, float speed = .05f)
+        public void FinishWritingText()
+        {
+            TextBox.text += _text;
+            _text = string.Empty;
+        }
+
+        public void TypeText(string text, float speed = .05f)
         {
             _text = text;
             TextBox.text = string.Empty;
