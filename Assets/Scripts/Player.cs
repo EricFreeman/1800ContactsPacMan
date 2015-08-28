@@ -18,7 +18,6 @@ namespace Assets.Scripts
         public bool IsBouncy = false;
         public bool IsSticky = false; 
 
-
         private Rigidbody _rb;
 
         void Start()
@@ -59,7 +58,6 @@ namespace Assets.Scripts
 
         void BouncyBuff()
         {
-            Debug.Log(IsBouncy);
             if (IsBouncy && IsGrounded())
             {
                 _rb.AddForce(0, 66, 0);

@@ -55,7 +55,7 @@ namespace Assets.Scripts.UI
 
             if (!AudioSource.isPlaying && _conversation.IsComplete)
             {
-                Application.LoadLevel("MainMenu");
+                Application.LoadLevel("Game");
             }
         }
     }
