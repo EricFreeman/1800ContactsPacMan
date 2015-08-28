@@ -19,11 +19,16 @@ namespace Assets.Scripts.UI
         void Start()
         {
             var manager = new XmlManager<Conversation>();
-            _conversation = manager.Load("Assets/Conversations/Level3.txt");
+            _conversation = manager.Load("Assets/Conversations/Level6.txt");
         }
 
         void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                AudioSource.Stop();
+            }
+
             if (!AudioSource.isPlaying && !_conversation.IsComplete)
             {
                 var conversation = _conversation.Lines[_conversation.CurrentLine];
@@ -42,7 +47,7 @@ namespace Assets.Scripts.UI
                 _conversation.CurrentLine++;
             }
 
-            if (_conversation.IsComplete)
+            if (!AudioSource.isPlaying && _conversation.IsComplete)
             {
                 Application.LoadLevel("MainMenu");
             }

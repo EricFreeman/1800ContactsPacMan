@@ -22,7 +22,7 @@
 			<Name>Oculus Sinister</Name>
 			<Image>Sinister Laser Shooting</Image>
 			<Text>Pew Pew Pew</Text>
-			<Audio>Level6d</Audio>
+			<Audio>Firing Mah Laser</Audio>
 		</Line>
 	</Lines>
 </Conversation>
