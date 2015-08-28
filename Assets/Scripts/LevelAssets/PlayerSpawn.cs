@@ -10,6 +10,7 @@ namespace Assets.Scripts.LevelAssets
 	    public List<AudioClip> RespawnAudioClips;
 
         private Player _player;
+        private bool _isRespawn;
 
         void Start()
         {
@@ -30,7 +31,7 @@ namespace Assets.Scripts.LevelAssets
             _player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             Input.ResetInputAxes();
 
-	        if (RespawnAudioClips.Count > 0)
+	        if (_isRespawn && RespawnAudioClips.Count > 0)
 	        {
 		        var randomIndex = Random.Range(0, RespawnAudioClips.Count - 1);
 		        var audioClip = RespawnAudioClips[randomIndex];
@@ -40,6 +41,7 @@ namespace Assets.Scripts.LevelAssets
 
         public void Handle(RespawnPlayerMessage message)
         {
+            _isRespawn = true;
             RespawnPlayer();
         }
     }
