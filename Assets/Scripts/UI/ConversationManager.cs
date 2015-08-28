@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Assets.Scripts.UI
     {
         public TypewriterText Typewriter;
         public Text SpeakerName;
-        public List<Image> Images;
+        public List<GameObject> Images;
         public AudioSource AudioSource;
 
         private Conversation _conversation;
@@ -18,7 +19,7 @@ namespace Assets.Scripts.UI
         void Start()
         {
             var manager = new XmlManager<Conversation>();
-            _conversation = manager.Load("Assets/Conversations/Level3.txt");
+            _conversation = manager.Load("Assets/Conversations/Level6.txt");
         }
 
         void Update()
@@ -30,6 +31,9 @@ namespace Assets.Scripts.UI
                 SpeakerName.text = conversation.Name;
                 AudioSource.clip = Resources.Load<AudioClip>("Audio/" + conversation.Audio);
                 AudioSource.Play();
+
+                Images.ForEach(x => x.SetActive(false));
+                Images.First(x => x.name == conversation.Image).SetActive(true);
 
                 _conversation.CurrentLine++;
             }
