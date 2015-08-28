@@ -2,7 +2,6 @@
 using System.Linq;
 using Assets.Scripts.Messages;
 using Assets.Scripts.Models;
-using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEventAggregator;
 
@@ -14,20 +13,12 @@ namespace Assets.Scripts.Managers
         public List<LevelSequence> LevelSequence;
         public bool IgnoreLevelLoad;
 
-        public MainMenuController FuckThis;
-
         private GameObject _currentLevel;
+        private bool _hasSentLevelLoadedMessage;
 
         void Start()
         {
             LevelSequence = InitializeLevelSequence();
-
-            if (FuckThis != null)
-            {
-                FuckThis.Handle(new LevelSequenceLoadedMessage {Levels = LevelSequence});
-            }
-
-            EventAggregator.SendMessage(new LevelSequenceLoadedMessage { Levels = LevelSequence });
 
             var level = PlayerPrefs.GetString("Level");
 
@@ -44,6 +35,15 @@ namespace Assets.Scripts.Managers
             }
 
             this.Register<LoadNextLevelMessage>();
+        }
+
+        void Update()
+        {
+            if (!_hasSentLevelLoadedMessage)
+            {
+                EventAggregator.SendMessage(new LevelSequenceLoadedMessage {Levels = LevelSequence});
+                _hasSentLevelLoadedMessage = true;
+            }
         }
 
         void OnDestroy()
