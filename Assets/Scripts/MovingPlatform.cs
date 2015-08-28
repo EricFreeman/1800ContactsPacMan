@@ -14,7 +14,7 @@ namespace Assets.Scripts
         {
             if (_movingTo)
             {
-                transform.position = Vector3.MoveTowards(transform.position, EndPosition, PlatformSpeed*Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, EndPosition, PlatformSpeed * Time.deltaTime);
                 if (transform.position == EndPosition)
                 {
                     _movingTo = false;
@@ -22,12 +22,19 @@ namespace Assets.Scripts
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, StartPosition, PlatformSpeed*Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, StartPosition, PlatformSpeed * Time.deltaTime);
                 if (transform.position == StartPosition)
                 {
                     _movingTo = true;
                 }
             }
+        }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawLine(StartPosition, EndPosition);
+            Gizmos.DrawCube(StartPosition, new Vector3(4, 1, 3));
+            Gizmos.DrawCube(EndPosition, new Vector3(4, 1, 3));
         }
 
         void OnCollisionEnter(Collision collision)
