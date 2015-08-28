@@ -47,6 +47,12 @@ namespace Assets.Scripts
             {
                 EventAggregator.SendMessage(new RespawnPlayerMessage());
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.LoadLevel("MainMenu");
+            }
+
             UpdatePowerUps();
         }
 
