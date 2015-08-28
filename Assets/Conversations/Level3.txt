@@ -7,8 +7,8 @@
 			<Audio>Level3a</Audio>
 		</Line>
 		<Line>
-			<Name>Oculus Sinister</Name>
-			<Image>Sinister</Image>
+			<Name>Mysterious Voice</Name>
+			<Image></Image>
 			<Text>No, I am not kidding you!</Text>
 			<Audio>Level3b</Audio>
 		</Line>

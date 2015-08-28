@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI
         void Start()
         {
             var manager = new XmlManager<Conversation>();
-            _conversation = manager.Load("Assets/Conversations/Level6.txt");
+            _conversation = manager.Load("Assets/Conversations/Level3.txt");
         }
 
         void Update()
@@ -33,9 +33,18 @@ namespace Assets.Scripts.UI
                 AudioSource.Play();
 
                 Images.ForEach(x => x.SetActive(false));
-                Images.First(x => x.name == conversation.Image).SetActive(true);
+                var image = Images.FirstOrDefault(x => x.name == conversation.Image);
+                if (image != null)
+                {
+                    image.SetActive(true);
+                }
 
                 _conversation.CurrentLine++;
+            }
+
+            if (_conversation.IsComplete)
+            {
+                Application.LoadLevel("MainMenu");
             }
         }
     }
