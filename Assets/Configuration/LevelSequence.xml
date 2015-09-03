@@ -1,8 +1,7 @@
 ﻿<LevelConfiguration>
   <Levels>
     <LevelSequence>
-      <ConversationName>Level1</ConversationName>
-      <PrefabName>Level1</PrefabName>
+      <ConversationName>Level1-Conversation</ConversationName>
     </LevelSequence>
     <LevelSequence>
       <PrefabName>Level1</PrefabName>
@@ -10,7 +9,7 @@
       <Image>Level1</Image>
     </LevelSequence>
     <LevelSequence>
-      <ConversationName>Level2</ConversationName>
+      <ConversationName>Level2-Conversation</ConversationName>
       <PrefabName>Level2</PrefabName>
     </LevelSequence>
     <LevelSequence>
@@ -19,7 +18,7 @@
       <Image>Level2</Image>
     </LevelSequence>
     <LevelSequence>
-      <ConversationName>Level3</ConversationName>
+      <ConversationName>Level3-Conversation</ConversationName>
       <PrefabName>Level3</PrefabName>
     </LevelSequence>
     <LevelSequence>
@@ -32,7 +31,7 @@
       <DisplayName>Their Eyes Were Watching Baud</DisplayName>
     </LevelSequence>
     <LevelSequence>
-      <ConversationName>Level4</ConversationName>
+      <ConversationName>Level4-Conversation</ConversationName>
       <PrefabName>Level4</PrefabName>
     </LevelSequence>
     <LevelSequence>
@@ -45,7 +44,7 @@
 			<DisplayName>I Can Tree Clearly Now</DisplayName>
 		</LevelSequence>
     <LevelSequence>
-      <ConversationName>Level5</ConversationName>
+      <ConversationName>Level5-Conversation</ConversationName>
       <PrefabName>Level5</PrefabName>
     </LevelSequence>
     <LevelSequence>
@@ -58,7 +57,7 @@
 			<DisplayName>You've Got a Lot of Optic Nerve</DisplayName>
 		</LevelSequence>
     <LevelSequence>
-      <ConversationName>Level6</ConversationName>
+      <ConversationName>Level6-Conversation</ConversationName>
       <PrefabName>Level6</PrefabName>
     </LevelSequence>
     <LevelSequence>
@@ -67,7 +66,7 @@
       <Image>Level6</Image>
     </LevelSequence>
     <LevelSequence>
-      <ConversationName>Finale</ConversationName>
+      <ConversationName>Finale-Conversation</ConversationName>
     </LevelSequence>
   </Levels>
 </LevelConfiguration>

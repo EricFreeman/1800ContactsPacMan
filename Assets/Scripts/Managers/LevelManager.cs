@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Messages;
 using Assets.Scripts.Models;
@@ -94,7 +95,7 @@ namespace Assets.Scripts.Managers
             }
             else
             {
-                var index = 0;
+                int index;
                 if (Application.loadedLevelName == "Game")
                 {
                     index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene()));
@@ -110,9 +111,9 @@ namespace Assets.Scripts.Managers
                 }
 
                 var next = LevelSequence[index + 1];
-                if (next.IsCutscene() && index + 2 < LevelSequence.Count)
+                if (next.IsCutscene() && index + 1 < LevelSequence.Count)
                 {
-                    var nextLevel = LevelSequence[index + 2];
+                    var nextLevel = LevelSequence[index + 1];
 
                     LoadCutscene(next.ConversationName, nextLevel.PrefabName);
                 }
