@@ -1,0 +1,28 @@
+<Conversation>
+	<Lines>
+		<Line>
+			<Name>Oculus Sinister</Name>
+			<Image>Sinister</Image>
+			<Text>Wow, Dexter, I'm sorry I LASHED out at you before.  I guess I was just feeling IRRITABLE.</Text>
+			<Audio>Finalea</Audio>
+		</Line>
+		<Line>
+			<Name>Dex</Name>
+			<Image>Dexter</Image>
+			<Text>It's no problem.  I'm just glad to finally SEE you feeling better.</Text>
+			<Audio>Finaleb</Audio>
+		</Line>
+		<Line>
+			<Name>Oculus Sinister</Name>
+			<Image>Sinister</Image>
+			<Text>Why don't we go watch a movie or something?</Text>
+			<Audio>Finalec</Audio>
+		</Line>
+		<Line>
+			<Name>Dex</Name>
+			<Image>Dexter</Image>
+			<Text>Aye, aye.  </Text>
+			<Audio>Finaled</Audio>
+		</Line>
+	</Lines>
+</Conversation>

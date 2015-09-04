@@ -1,5 +1,4 @@
-﻿using UnityEditorInternal;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -58,24 +57,6 @@ namespace Assets.Scripts
             Gizmos.DrawLine(StartPosition, EndPosition);
             Gizmos.DrawCube(StartPosition, new Vector3(4, 1, 3));
             Gizmos.DrawCube(EndPosition, new Vector3(4, 1, 3));
-        }
-
-        void OnCollisionEnter(Collision collision)
-        {
-            var col = collision.collider.transform;
-            if (col.name == "Player")
-            {
-                col.SetParent(transform);
-            }
-        }
-
-        void OnCollisionExit(Collision collision)
-        {
-            var col = collision.collider.transform;
-            if (col.name == "Player")
-            {
-                col.SetParent(null);
-            }
         }
     }
 
