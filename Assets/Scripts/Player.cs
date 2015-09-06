@@ -5,7 +5,6 @@ using Assets.Scripts.Messages;
 using Assets.Scripts.PowerUps.Behaviors;
 using UnityEngine;
 using UnityEventAggregator;
-using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {

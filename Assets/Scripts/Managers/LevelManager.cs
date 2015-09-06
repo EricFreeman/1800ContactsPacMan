@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Messages;
 using Assets.Scripts.Models;
@@ -8,7 +7,7 @@ using UnityEventAggregator;
 
 namespace Assets.Scripts.Managers
 {
-    public class LevelManager : MonoBehaviour, IListener<LoadNextLevelMessage>
+    public class LevelManager : MonoBehaviour, IListener<LoadNextLevelMessage>, IListener<LevelFadedOutMessage>
     {
         [HideInInspector]
         public List<LevelSequence> LevelSequence;
@@ -25,17 +24,18 @@ namespace Assets.Scripts.Managers
 
             if (!IgnoreLevelLoad)
             {
-                if (string.IsNullOrEmpty(level))
+                if (!string.IsNullOrEmpty(level))
                 {
-                    LoadNextLevel();
+                    LoadLevel(level);
                 }
                 else
                 {
-                    LoadLevel(level);
+                    LoadNextLevel();
                 }
             }
 
             this.Register<LoadNextLevelMessage>();
+            this.Register<LevelFadedOutMessage>();
         }
 
         void Update()
@@ -50,11 +50,13 @@ namespace Assets.Scripts.Managers
         void OnDestroy()
         {
             this.UnRegister<LoadNextLevelMessage>();
+            this.UnRegister<LevelFadedOutMessage>();
         }
 
         public void LoadLevel(string levelName)
         {
             PlayerPrefs.SetString("Level", levelName);
+            PlayerPrefs.SetString("Cutscene", null);
             
             if (_currentLevel != null)
             {
@@ -68,14 +70,14 @@ namespace Assets.Scripts.Managers
             else
             {
                 _currentLevel = Instantiate(Resources.Load<GameObject>("Prefabs/Levels/" + levelName));
+                EventAggregator.SendMessage(new ResetFadeMessage());
             }
         }
 
-        public void LoadCutscene(string cutsceneName, string levelName)
+        public void LoadCutscene(string cutsceneName)
         {
             PlayerPrefs.SetString("Cutscene", cutsceneName);
-            PlayerPrefs.SetString("Level", levelName);
-
+            PlayerPrefs.SetString("Level", null);
             Application.LoadLevel("Cutscene");
         }
 
@@ -89,33 +91,27 @@ namespace Assets.Scripts.Managers
         {
             var currentLevel = PlayerPrefs.GetString("Level");
             var currentCutscene = PlayerPrefs.GetString("Cutscene");
-            if (string.IsNullOrEmpty(currentLevel))
+
+            Debug.Log(currentLevel);
+            Debug.Log(currentCutscene);
+
+            if (string.IsNullOrEmpty(currentLevel) && string.IsNullOrEmpty(currentCutscene))
             {
                 LoadLevel(LevelSequence.First(x => !x.IsCutscene()).PrefabName);
             }
             else
             {
-                int index;
-                if (Application.loadedLevelName == "Game")
-                {
-                    index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.PrefabName == currentLevel && !x.IsCutscene()));
-                }
-                else
-                {
-                    index = LevelSequence.IndexOf(LevelSequence.FirstOrDefault(x => x.ConversationName == currentCutscene && x.IsCutscene()));
-                }
+                var index = LevelSequence.IndexOf(LevelSequence.LastOrDefault(x => x.PrefabName == currentLevel || x.ConversationName == currentCutscene));
 
-                if (index >= LevelSequence.Count)
+                if (index + 1 >= LevelSequence.Count)
                 {
                     Application.LoadLevel("MainMenu");
                 }
 
                 var next = LevelSequence[index + 1];
-                if (next.IsCutscene() && index + 1 < LevelSequence.Count)
+                if (next.IsCutscene())
                 {
-                    var nextLevel = LevelSequence[index + 1];
-
-                    LoadCutscene(next.ConversationName, nextLevel.PrefabName);
+                    LoadCutscene(next.ConversationName);
                 }
                 else
                 {
@@ -125,6 +121,11 @@ namespace Assets.Scripts.Managers
         }
 
         public void Handle(LoadNextLevelMessage message)
+        {
+            EventAggregator.SendMessage(new FadeOutLevelMessage());
+        }
+
+        public void Handle(LevelFadedOutMessage message)
         {
             LoadNextLevel();
         }

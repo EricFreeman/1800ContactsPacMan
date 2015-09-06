@@ -13,13 +13,14 @@ namespace Assets.Scripts.UI
         public void SelectLevel()
         {
             PlayerPrefs.SetString("Level", LevelName);
+            PlayerPrefs.SetString("Cutscene", null);
             Application.LoadLevel("Game");
         }
 
         public void SelectCutscene()
         {
-            PlayerPrefs.SetString("Level", LevelName);
             PlayerPrefs.SetString("Cutscene", CutsceneName);
+            PlayerPrefs.SetString("Level", null);
             Application.LoadLevel("Cutscene");
         }
     }
