@@ -92,9 +92,6 @@ namespace Assets.Scripts.Managers
             var currentLevel = PlayerPrefs.GetString("Level");
             var currentCutscene = PlayerPrefs.GetString("Cutscene");
 
-            Debug.Log(currentLevel);
-            Debug.Log(currentCutscene);
-
             if (string.IsNullOrEmpty(currentLevel) && string.IsNullOrEmpty(currentCutscene))
             {
                 LoadLevel(LevelSequence.First(x => !x.IsCutscene()).PrefabName);
