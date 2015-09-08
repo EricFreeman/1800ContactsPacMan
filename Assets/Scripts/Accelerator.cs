@@ -8,7 +8,10 @@ namespace Assets.Scripts
 		{
 			if (collision.name == "Player")
 			{
-				collision.GetComponent<Rigidbody>().AddForce(transform.forward * 666);
+                collision.GetComponent<Rigidbody>().AddForce(transform.forward * 666);
+
+                var audioClip = (AudioClip)Resources.Load("Audio/Accelerator", typeof(AudioClip));
+                AudioSource.PlayClipAtPoint(audioClip, transform.position);
 			}
 		}
 	}
