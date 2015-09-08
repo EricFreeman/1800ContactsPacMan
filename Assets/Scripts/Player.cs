@@ -18,7 +18,8 @@ namespace Assets.Scripts
         public float Deceleration;
         public float AirDeceleration;
         public bool IsBouncy = false;
-        public bool IsSticky = false; 
+        public bool IsSticky = false;
+        public bool IsAscending = false;
 
         private Rigidbody _rb;
 
@@ -29,20 +30,28 @@ namespace Assets.Scripts
 
         void FixedUpdate()
         {
-            var moveHorizontal = Input.GetAxis("Horizontal");
-            var moveVertical = Input.GetAxis("Vertical");
-
-            _rb.velocity += new Vector3(moveHorizontal, 0.0f, moveVertical) * Acceleration;
-            _rb.velocity = _rb.velocity.Clamp(-MaxSpeed, MaxSpeed, true);
-
-            if (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical) <= .1f)
+            if (IsAscending)
             {
-                var currentDeceleration = IsGrounded() ? Deceleration : AirDeceleration;
-                var temp = _rb.velocity;
-                temp.x = Mathf.MoveTowards(temp.x, 0, currentDeceleration);
-                temp.z = Mathf.MoveTowards(temp.z, 0, currentDeceleration);
+                var speed = 20f;
+                _rb.velocity += new Vector3(0f, speed, 0f);
+            }
+            else
+            {
+                var moveHorizontal = Input.GetAxis("Horizontal");
+                var moveVertical = Input.GetAxis("Vertical");
 
-                _rb.velocity = temp;
+                _rb.velocity += new Vector3(moveHorizontal, 0.0f, moveVertical)*Acceleration;
+                _rb.velocity = _rb.velocity.Clamp(-MaxSpeed, MaxSpeed, true);
+
+                if (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical) <= .1f)
+                {
+                    var currentDeceleration = IsGrounded() ? Deceleration : AirDeceleration;
+                    var temp = _rb.velocity;
+                    temp.x = Mathf.MoveTowards(temp.x, 0, currentDeceleration);
+                    temp.z = Mathf.MoveTowards(temp.z, 0, currentDeceleration);
+
+                    _rb.velocity = temp;
+                }
             }
 
             if (transform.position.y <= -20 || Input.GetKeyDown(KeyCode.R))

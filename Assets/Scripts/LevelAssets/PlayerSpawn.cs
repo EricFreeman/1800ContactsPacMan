@@ -26,6 +26,7 @@ namespace Assets.Scripts.LevelAssets
 
         public void RespawnPlayer()
         {
+            _player.IsAscending = false;
             _player.transform.position = transform.position;
             _player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             _player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
