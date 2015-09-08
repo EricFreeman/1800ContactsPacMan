@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Assets.Scripts.Messages;
+﻿using Assets.Scripts.Messages;
 using UnityEngine;
 using UnityEventAggregator;
 
@@ -13,11 +12,11 @@ namespace Assets.Scripts
         {
             if (collision.collider.name == "Player")
             {
-                var audioClip = (AudioClip)Resources.Load("Audio/jingle", typeof(AudioClip));
+                var audioClip = Resources.Load<AudioClip>("Audio/jingle");
                 AudioSource.PlayClipAtPoint(audioClip, transform.position);
 
                 var player = collision.collider.gameObject;
-                ((Player)player.GetComponent("Player")).IsAscending = true;
+                player.GetComponent<Player>().IsAscending = true;
 
                 _nextLevelTime = Time.fixedTime + 2f;
             }
