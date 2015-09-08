@@ -9,6 +9,9 @@ namespace Assets.Scripts
             if (collision.name == "Player")
             {
                 collision.GetComponent<Rigidbody>().AddForce(0, 666, 0);
+
+                var audioClip = (AudioClip) Resources.Load("Audio/jump", typeof (AudioClip));
+                AudioSource.PlayClipAtPoint(audioClip, transform.position);
             }
         }
     }

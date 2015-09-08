@@ -5,11 +5,13 @@ using Assets.Scripts.Messages;
 using Assets.Scripts.PowerUps.Behaviors;
 using UnityEngine;
 using UnityEventAggregator;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
+        public List<AudioClip> CollisionAudioClips;
         public List<Behavior> Behaviors = new List<Behavior>();
         public float MaxSpeed;
         public float Acceleration;
@@ -98,6 +100,31 @@ namespace Assets.Scripts
             //Debug.Log(this.Acceleration);
             //Debug.Log(this.MaxSpeed);
             Debug.Log(this.IsBouncy);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            var magnitude = collision.relativeVelocity.magnitude;
+            const short loud = 0;
+            const short medium = 1;
+            const short soft = 2;
+            var index = 0;
+
+            if (magnitude >= 10)
+            {
+                index = loud;
+            }
+            else if (magnitude >= 5)
+            {
+                index = medium;
+            }
+            else
+            {
+                index = soft;
+            }
+
+            var audioClip = CollisionAudioClips[index];
+            AudioSource.PlayClipAtPoint(audioClip, collision.transform.position);
         }
     }
 }
