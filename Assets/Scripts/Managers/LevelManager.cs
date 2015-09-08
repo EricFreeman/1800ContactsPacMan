@@ -104,15 +104,17 @@ namespace Assets.Scripts.Managers
                 {
                     Application.LoadLevel("MainMenu");
                 }
-
-                var next = LevelSequence[index + 1];
-                if (next.IsCutscene())
-                {
-                    LoadCutscene(next.ConversationName);
-                }
                 else
                 {
-                    LoadLevel(next.PrefabName);
+                    var next = LevelSequence[index + 1];
+                    if (next.IsCutscene())
+                    {
+                        LoadCutscene(next.ConversationName);
+                    }
+                    else
+                    {
+                        LoadLevel(next.PrefabName);
+                    }
                 }
             }
         }
