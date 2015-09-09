@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Messages;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEventAggregator;
 
 namespace Assets.Scripts.UI
 {
@@ -14,14 +16,20 @@ namespace Assets.Scripts.UI
         {
             PlayerPrefs.SetString("Level", LevelName);
             PlayerPrefs.SetString("Cutscene", null);
-            Application.LoadLevel("Game");
+            EventAggregator.SendMessage(new LoadSelectedLevelMessage
+            {
+                Level = LevelName
+            });
         }
 
         public void SelectCutscene()
         {
             PlayerPrefs.SetString("Cutscene", CutsceneName);
             PlayerPrefs.SetString("Level", null);
-            Application.LoadLevel("Cutscene");
+            EventAggregator.SendMessage(new LoadSelectedLevelMessage
+            {
+                Level = CutsceneName
+            });
         }
     }
 }

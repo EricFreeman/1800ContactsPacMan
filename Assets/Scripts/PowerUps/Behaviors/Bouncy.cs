@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.Scripts.PowerUps.Behaviors
+﻿namespace Assets.Scripts.PowerUps.Behaviors
 {
     public class Bouncy : Behavior
     {

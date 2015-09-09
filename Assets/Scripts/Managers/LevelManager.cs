@@ -7,7 +7,7 @@ using UnityEventAggregator;
 
 namespace Assets.Scripts.Managers
 {
-    public class LevelManager : MonoBehaviour, IListener<LoadNextLevelMessage>, IListener<LevelFadedOutMessage>
+    public class LevelManager : MonoBehaviour, IListener<LoadNextLevelMessage>, IListener<LoadSelectedLevelMessage>
     {
         [HideInInspector]
         public List<LevelSequence> LevelSequence;
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Managers
             }
 
             this.Register<LoadNextLevelMessage>();
-            this.Register<LevelFadedOutMessage>();
+            this.Register<LoadSelectedLevelMessage>();
         }
 
         void Update()
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Managers
         void OnDestroy()
         {
             this.UnRegister<LoadNextLevelMessage>();
-            this.UnRegister<LevelFadedOutMessage>();
+            this.UnRegister<LoadSelectedLevelMessage>();
         }
 
         public void LoadLevel(string levelName)
@@ -89,6 +89,16 @@ namespace Assets.Scripts.Managers
 
         private void LoadNextLevel()
         {
+            LoadLevel(1);
+        }
+
+        private void LoadSelectedLevel()
+        {
+            LoadLevel(0);
+        }
+
+        public void LoadLevel(int modifier)
+        {
             var currentLevel = PlayerPrefs.GetString("Level");
             var currentCutscene = PlayerPrefs.GetString("Cutscene");
 
@@ -100,13 +110,13 @@ namespace Assets.Scripts.Managers
             {
                 var index = LevelSequence.IndexOf(LevelSequence.LastOrDefault(x => x.PrefabName == currentLevel || x.ConversationName == currentCutscene));
 
-                if (index + 1 >= LevelSequence.Count)
+                if (index + modifier >= LevelSequence.Count)
                 {
                     Application.LoadLevel("MainMenu");
                 }
                 else
                 {
-                    var next = LevelSequence[index + 1];
+                    var next = LevelSequence[index + modifier];
                     if (next.IsCutscene())
                     {
                         LoadCutscene(next.ConversationName);
@@ -121,12 +131,12 @@ namespace Assets.Scripts.Managers
 
         public void Handle(LoadNextLevelMessage message)
         {
-            EventAggregator.SendMessage(new FadeOutLevelMessage());
+            EventAggregator.SendMessage(new FadeOutLevelMessage { Callback = LoadNextLevel });
         }
 
-        public void Handle(LevelFadedOutMessage message)
+        public void Handle(LoadSelectedLevelMessage message)
         {
-            LoadNextLevel();
+            EventAggregator.SendMessage(new FadeOutLevelMessage { Callback = LoadSelectedLevel });
         }
     }
 }

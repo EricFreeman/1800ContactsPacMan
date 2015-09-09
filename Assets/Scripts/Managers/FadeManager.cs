@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Messages;
+﻿using System;
+using Assets.Scripts.Messages;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEventAggregator;
@@ -7,6 +8,7 @@ namespace Assets.Scripts.Managers
 {
     public class FadeManager : MonoBehaviour, IListener<FadeOutLevelMessage>, IListener<ResetFadeMessage>
     {
+        private Action _callback;
         private Image _image;
         private bool _isFading;
         private float _alpha;
@@ -34,7 +36,7 @@ namespace Assets.Scripts.Managers
                 if (_alpha >= 1 && !_sentMessage)
                 {
                     _sentMessage = true;
-                    EventAggregator.SendMessage(new LevelFadedOutMessage());
+                    _callback();
                 }
             }
         }
@@ -42,6 +44,7 @@ namespace Assets.Scripts.Managers
         public void Handle(FadeOutLevelMessage message)
         {
             _isFading = true;
+            _callback = message.Callback;
         }
 
         public void Handle(ResetFadeMessage message)

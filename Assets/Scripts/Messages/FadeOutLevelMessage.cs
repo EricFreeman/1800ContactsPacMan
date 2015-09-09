@@ -1,4 +1,9 @@
-﻿namespace Assets.Scripts.Messages
+﻿using System;
+
+namespace Assets.Scripts.Messages
 {
-    public class FadeOutLevelMessage { }
+    public class FadeOutLevelMessage 
+    {
+        public Action Callback { get; set; }
+    }
 }
