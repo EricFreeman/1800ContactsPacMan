@@ -17,6 +17,7 @@ namespace Assets.Scripts.UI
         public AudioSource AudioSource;
 
         private Conversation _conversation;
+        private bool _sentMessage;
 
         void Start()
         {
@@ -55,10 +56,10 @@ namespace Assets.Scripts.UI
                 _conversation.CurrentLine++;
             }
 
-            if (!AudioSource.isPlaying && _conversation.IsComplete)
+            if (!AudioSource.isPlaying && _conversation.IsComplete && !_sentMessage)
             {
+                _sentMessage = true;
                 EventAggregator.SendMessage(new LoadNextLevelMessage());
-                //Application.LoadLevel(string.IsNullOrEmpty(PlayerPrefs.GetString("Level")) ? "MainMenu" : "Game");
             }
         }
     }

@@ -70,7 +70,7 @@ namespace Assets.Scripts.Managers
             else
             {
                 _currentLevel = Instantiate(Resources.Load<GameObject>("Prefabs/Levels/" + levelName));
-                EventAggregator.SendMessage(new ResetFadeMessage());
+                EventAggregator.SendMessage(new FadeInLevelMessage());
             }
         }
 

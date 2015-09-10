@@ -8,6 +8,8 @@ namespace Assets.Scripts
     {
         float? _nextLevelTime = null;
 
+        private bool _sentMessage;
+
         void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.name == "Player")
@@ -24,9 +26,10 @@ namespace Assets.Scripts
         
         void FixedUpdate()
         {
-            if (_nextLevelTime.HasValue && Time.fixedTime >= _nextLevelTime)
+            if (_nextLevelTime.HasValue && Time.fixedTime >= _nextLevelTime && !_sentMessage)
             {
                 EventAggregator.SendMessage(new LoadNextLevelMessage());
+                _sentMessage = true;
             }
         }
     }

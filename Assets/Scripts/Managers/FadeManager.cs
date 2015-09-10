@@ -6,53 +6,59 @@ using UnityEventAggregator;
 
 namespace Assets.Scripts.Managers
 {
-    public class FadeManager : MonoBehaviour, IListener<FadeOutLevelMessage>, IListener<ResetFadeMessage>
+    public class FadeManager : MonoBehaviour, IListener<FadeOutLevelMessage>, IListener<FadeInLevelMessage>
     {
         private Action _callback;
         private Image _image;
-        private bool _isFading;
+        private float _fadeSpeed;
         private float _alpha;
         private bool _sentMessage;
 
         void Start()
         {
             _image = GetComponent<Image>();
+            this.Register<FadeInLevelMessage>();
             this.Register<FadeOutLevelMessage>();
-            this.Register<ResetFadeMessage>();
+            _alpha = 1;
+            EventAggregator.SendMessage(new FadeInLevelMessage());
         }
 
         void OnDestroy()
         {
+            this.UnRegister<FadeInLevelMessage>();
             this.UnRegister<FadeOutLevelMessage>();
-            this.UnRegister<ResetFadeMessage>();
         }
 
         void Update()
         {
-            if (_isFading)
+            if (_fadeSpeed != 0)
             {
-                _alpha += .1f;
+                _alpha += _fadeSpeed;
                 _image.color = new Color(0, 0, 0, _alpha);
-                if (_alpha >= 1 && !_sentMessage)
+                if ((_alpha >= 1 || _alpha < 0) && !_sentMessage)
                 {
                     _sentMessage = true;
-                    _callback();
+                    _fadeSpeed = 0;
+                    if (_callback != null)
+                    {
+                        _callback();
+                    }
                 }
             }
         }
 
         public void Handle(FadeOutLevelMessage message)
         {
-            _isFading = true;
+            _fadeSpeed = .1f;
             _callback = message.Callback;
+            _sentMessage = false;
         }
 
-        public void Handle(ResetFadeMessage message)
+        public void Handle(FadeInLevelMessage message)
         {
-            _isFading = false;
+            _fadeSpeed = -.1f;
+            _callback = message.Callback;
             _sentMessage = false;
-            _alpha = 0;
-            _image.color = new Color(0, 0, 0, 0);
         }
     }
 }
