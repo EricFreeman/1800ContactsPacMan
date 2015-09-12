@@ -21,6 +21,7 @@ namespace Assets.Scripts
                 player.GetComponent<Player>().IsAscending = true;
 
                 _nextLevelTime = Time.fixedTime + 2f;
+                EventAggregator.SendMessage(new LevelCompleteMessage());
             }
         }
         

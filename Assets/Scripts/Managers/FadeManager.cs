@@ -43,6 +43,7 @@ namespace Assets.Scripts.Managers
                     {
                         _callback();
                     }
+                    EventAggregator.SendMessage(new FadeCompleteMessage());
                 }
             }
         }
