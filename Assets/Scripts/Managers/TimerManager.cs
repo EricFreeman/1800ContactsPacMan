@@ -17,6 +17,10 @@ namespace Assets.Scripts.Managers
 
             this.Register<FadeCompleteMessage>();
             this.Register<LevelCompleteMessage>();
+
+            var currentLevel = PlayerPrefs.GetString("Level");
+            var bestTime = PlayerPrefs.GetFloat(currentLevel + "_bestScore");
+            Debug.Log(bestTime);
         }
 
         void OnDestroy()
@@ -44,6 +48,13 @@ namespace Assets.Scripts.Managers
         public void Handle(LevelCompleteMessage message)
         {
             _startCountdown = false;
+
+            var currentLevel = PlayerPrefs.GetString("Level");
+            var bestTime = PlayerPrefs.GetFloat(currentLevel + "_bestScore");
+            if (_time <= bestTime || bestTime == 0)
+            {
+                PlayerPrefs.SetFloat(currentLevel + "_bestScore", _time);
+            }
         }
     }
 }
