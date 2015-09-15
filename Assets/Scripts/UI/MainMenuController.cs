@@ -32,7 +32,20 @@ namespace Assets.Scripts.UI
 
                 if (!level.IsCutscene())
                 {
-                    button.GetComponentInChildren<Text>().text = level.DisplayName;
+                    button.transform.GetChild(0).GetComponentInChildren<Text>().text = level.DisplayName;
+
+                    var besTimeText = button.transform.GetChild(2);
+                    var bestTime = PlayerPrefs.GetFloat(level.PrefabName + "_bestScore");
+                    if (bestTime > 0)
+                    {
+                        besTimeText.GetComponent<Text>().text = string.Format("Best Time: {0}", bestTime.ToString("F2"));
+                    }
+                    else
+                    {
+                        besTimeText.gameObject.SetActive(false);
+                    }
+
+                    button.transform.GetChild(0).GetComponentInChildren<Text>().text = level.DisplayName;
                     button.Image.sprite =
                         Resources.Load<Sprite>(string.Format("Images/LevelScreenshots/{0}",
                             string.IsNullOrEmpty(level.Image) ? "NoImage" : level.Image));

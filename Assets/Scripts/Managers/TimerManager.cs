@@ -17,10 +17,6 @@ namespace Assets.Scripts.Managers
 
             this.Register<FadeCompleteMessage>();
             this.Register<LevelCompleteMessage>();
-
-            var currentLevel = PlayerPrefs.GetString("Level");
-            var bestTime = PlayerPrefs.GetFloat(currentLevel + "_bestScore");
-            Debug.Log(bestTime);
         }
 
         void OnDestroy()

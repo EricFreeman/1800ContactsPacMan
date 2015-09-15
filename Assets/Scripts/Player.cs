@@ -12,6 +12,7 @@ namespace Assets.Scripts
     {
         public List<AudioClip> CollisionAudioClips;
         public List<Behavior> Behaviors = new List<Behavior>();
+        public AudioClip WinJingle;
         public float MaxSpeed;
         public float Acceleration;
         public float Deceleration;

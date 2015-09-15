@@ -6,8 +6,7 @@ namespace Assets.Scripts
 {
     public class BoxOfContacts : MonoBehaviour
     {
-        float? _nextLevelTime = null;
-
+        private float? _nextLevelTime;
         private bool _sentMessage;
 
         void OnCollisionEnter(Collision collision)
@@ -15,7 +14,7 @@ namespace Assets.Scripts
             if (collision.collider.name == "Player")
             {
                 var audioClip = Resources.Load<AudioClip>("Audio/jingle");
-                AudioSource.PlayClipAtPoint(audioClip, transform.position);
+                AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, 1f);
 
                 var player = collision.collider.gameObject;
                 player.GetComponent<Player>().IsAscending = true;
