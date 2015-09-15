@@ -5,7 +5,7 @@ using UnityEventAggregator;
 
 namespace Assets.Scripts.Managers
 {
-    public class TimerManager : MonoBehaviour, IListener<FadeCompleteMessage>, IListener<LevelCompleteMessage>
+    public class TimerManager : MonoBehaviour, IListener<FadeCompleteMessage>, IListener<LevelCompleteMessage>, IListener<RespawnPlayerMessage>
     {
         private Text _textField;
         private float _time;
@@ -15,12 +15,14 @@ namespace Assets.Scripts.Managers
         {
             _textField = GetComponent<Text>();
 
+            this.Register<RespawnPlayerMessage>();
             this.Register<FadeCompleteMessage>();
             this.Register<LevelCompleteMessage>();
         }
 
         void OnDestroy()
         {
+            this.UnRegister<RespawnPlayerMessage>();
             this.UnRegister<FadeCompleteMessage>();
             this.UnRegister<LevelCompleteMessage>();
         }
@@ -33,6 +35,11 @@ namespace Assets.Scripts.Managers
             }
 
             _textField.text = _time.ToString("F2");
+        }
+
+        public void Handle(RespawnPlayerMessage message)
+        {
+            _time = 0f;
         }
 
         public void Handle(FadeCompleteMessage message)
